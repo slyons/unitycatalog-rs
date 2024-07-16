@@ -168,7 +168,7 @@ mod tests {
         let in_list = catalog_client.list(None, None).await?;
         let cinfo_patched = catalog_client.update("mycatalog", None, None, Some("new comment")).await?;
         eprintln!("{:#?}", cinfo_patched);
-        let str = catalog_client.delete("mycatalog", false).await?;
+        catalog_client.delete("mycatalog", false).await?;
         let after_list = catalog_client.list(None, None).await?;
 
         assert_eq!(initial_list.catalogs, after_list.catalogs);
@@ -185,6 +185,22 @@ mod tests {
             ));
 
         });
+        Ok(())
+    }
+
+    #[tokio::test]
+    async fn test_not_found() -> UCRSResult<()> {
+        let rc = RequestClient::new("http://localhost:8080", true)?;
+        let catalog_client = CatalogsClient::new(&rc);
+
+        let res = catalog_client.delete("mycatalog", false).await;
+        with_settings!({
+            filters => crate::testing::cleanup_user_model()
+        }, {
+            insta::assert_debug_snapshot!(res);
+
+        });
+
         Ok(())
     }
 }

@@ -1,0 +1,9 @@
+---
+source: src/clients/catalogs.rs
+expression: res
+---
+Err(
+    CatalogNotFound(
+        "mycatalog",
+    ),
+)
