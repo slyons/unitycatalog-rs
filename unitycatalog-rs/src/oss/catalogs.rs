@@ -127,76 +127,89 @@ pub struct UpdateCatalog {
 mod tests {
     use super::*;
     use insta::with_settings;
+    use crate::testing::test_utils::{cleanup_user_model, test_with_uc};
 
     #[tokio::test]
     async fn test_list() -> UCRSResult<()> {
-        let rc = RequestClient::new("http://localhost:8080", true)?;
-        let client = CatalogsClient::new(&rc);
-        let list = client.list(None, None).await;
 
-        with_settings!({
-            filters => crate::testing::cleanup_user_model()
-        }, {
-            insta::assert_debug_snapshot!(list);
-        });
+        test_with_uc(|port| async move {
+            let rc = RequestClient::new(&format!("http://localhost:{}", port), true)?;
+            let client = CatalogsClient::new(&rc);
+            let list = client.list(None, None).await;
 
-        Ok(())
+            with_settings!({
+                filters => cleanup_user_model()
+            }, {
+                insta::assert_debug_snapshot!(list);
+            });
+
+            Ok(())
+        })
+        .await
+        
     }
 
     #[tokio::test]
     async fn test_round_trip() -> UCRSResult<()> {
 
+        test_with_uc(|port| async move {
+            let rc = RequestClient::new(&format!("http://localhost:{}", port), true)?;
+            let catalog_client = CatalogsClient::new(&rc);
+
+            let initial_list = catalog_client.list(None, None).await?;
+            let create_props = CreateCatalog {
+                name: "mycatalog".to_string(),
+                comment: None,
+                properties: None
+            };
+            let cinfo = catalog_client.create(create_props).await?;
+            let in_list = catalog_client.list(None, None).await?;
+            let update_props = UpdateCatalog {
+                comment: Some("new comment".to_string()),
+                ..Default::default()
+            };
+            let cinfo_patched = catalog_client.update("mycatalog", update_props).await?;
+            catalog_client.delete("mycatalog", false).await?;
+            let after_list = catalog_client.list(None, None).await?;
+
+            assert_eq!(initial_list.catalogs, after_list.catalogs);
+
+            with_settings!({
+                filters => cleanup_user_model()
+            }, {
+                insta::assert_debug_snapshot!((
+                    initial_list,
+                    cinfo, 
+                    in_list,
+                    cinfo_patched,
+                    after_list
+                ));
+
+            });
+            Ok(())
+        })
+        .await
         
-        let rc = RequestClient::new("http://localhost:8080", true)?;
-        let catalog_client = CatalogsClient::new(&rc);
-
-        let initial_list = catalog_client.list(None, None).await?;
-        let create_props = CreateCatalog {
-            name: "mycatalog".to_string(),
-            comment: None,
-            properties: None
-        };
-        let cinfo = catalog_client.create(create_props).await?;
-        let in_list = catalog_client.list(None, None).await?;
-        let update_props = UpdateCatalog {
-            comment: Some("new comment".to_string()),
-            ..Default::default()
-        };
-        let cinfo_patched = catalog_client.update("mycatalog", update_props).await?;
-        eprintln!("{:#?}", cinfo_patched);
-        catalog_client.delete("mycatalog", false).await?;
-        let after_list = catalog_client.list(None, None).await?;
-
-        assert_eq!(initial_list.catalogs, after_list.catalogs);
-
-        with_settings!({
-            filters => crate::testing::cleanup_user_model()
-        }, {
-            insta::assert_debug_snapshot!((
-                initial_list,
-                cinfo, 
-                in_list,
-                cinfo_patched,
-                after_list
-            ));
-
-        });
-        Ok(())
     }
 
     #[tokio::test]
     async fn test_not_found() -> UCRSResult<()> {
-        let rc = RequestClient::new("http://localhost:8080", true)?;
-        let catalog_client = CatalogsClient::new(&rc);
 
-        let res = catalog_client.delete("mycatalog", false).await;
-        with_settings!({
-            filters => crate::testing::cleanup_user_model()
-        }, {
-            insta::assert_debug_snapshot!(res);
+        test_with_uc(|port| async move {
+            let rc = RequestClient::new(&format!("http://localhost:{}", port), true)?;
+            let catalog_client = CatalogsClient::new(&rc);
 
-        });
+            let res = catalog_client.delete("mycatalog", false).await;
+            with_settings!({
+                filters => cleanup_user_model()
+            }, {
+                insta::assert_debug_snapshot!(res);
 
-        Ok(())
+            });
+
+            Ok(())
+        })
+        .await
+        
     }
 }

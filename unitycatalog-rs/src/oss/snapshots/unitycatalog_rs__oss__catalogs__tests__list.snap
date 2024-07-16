@@ -1,0 +1,29 @@
+---
+source: src/oss/catalogs.rs
+expression: list
+---
+Ok(
+    ListCatalogResponse {
+        catalogs: [
+            CatalogInfo {
+                name: Some(
+                    "unity",
+                ),
+                comment: Some(
+                    "Main catalog",
+                ),
+                properties: Some(
+                    {},
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: None,
+                id: Some(
+                    "PID",
+                ),
+            },
+        ],
+        next_page_token: None,
+    },
+)
