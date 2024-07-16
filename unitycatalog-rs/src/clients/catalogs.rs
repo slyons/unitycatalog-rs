@@ -1,7 +1,7 @@
 use crate::{errors::UCRSError, request::RequestClient};
 use reqwest::StatusCode;
-use serde::{de::IgnoredAny, Deserialize, Serialize};
-use std::{collections::HashMap, error::Error};
+use serde::{Deserialize, Serialize};
+use std::collections::HashMap;
 use crate::errors::UCRSResult;
 
 pub struct CatalogsClient<'a> {
