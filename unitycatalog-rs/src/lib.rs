@@ -1,6 +1,6 @@
 mod request;
 mod errors;
-mod clients;
+mod oss;
 mod testing;
 
 pub fn add(left: u64, right: u64) -> u64 {
