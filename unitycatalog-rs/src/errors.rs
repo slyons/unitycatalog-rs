@@ -14,8 +14,12 @@ pub enum UCRSError {
     JSONParsingError(#[source] reqwest::Error),
     #[error("Duplicate Catalog name")]
     DuplicateCatalogName(String),
+    #[error("Duplicate Schema")]
+    DuplicateSchemaName(String),
     #[error("Catalog not found")]
-    CatalogNotFound(String)
+    CatalogNotFound(String),
+    #[error("Schema not found")]
+    SchemaNotFound(String)
 }
 
 pub type UCRSResult<T> = Result<T, UCRSError>;

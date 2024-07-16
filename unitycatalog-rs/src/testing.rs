@@ -1,3 +1,4 @@
+#[cfg(test)]
 pub fn cleanup_user_model() -> Vec<(&'static str, &'static str)> {
     vec![
         (
