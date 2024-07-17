@@ -263,7 +263,6 @@ mod tests {
             let full_name = TablesClient::full_name(catalog_name, schema_name, table_name);
 
             let initial_list = client.list(&catalog_name, &schema_name, None, None).await?;
-            let table_names = initial_list.tables.iter().map(|l| l.name.as_ref().unwrap().to_string()).collect::<Vec<String>>();
             let create_columns = vec![
                 ColumnInfoBuilder::default()
                     .name("my_column".to_owned())
