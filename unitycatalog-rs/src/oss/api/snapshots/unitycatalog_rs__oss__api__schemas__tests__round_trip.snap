@@ -1,93 +1,123 @@
 ---
-source: src/clients/catalogs.rs
-expression: "(initial_list, cinfo, in_list, cinfo_patched, after_list)"
+source: src/oss/api/schemas.rs
+expression: "(initial_schema_list, schema, second_list, updated, after_delete)"
 ---
 (
-    ListCatalogResponse {
-        catalogs: [
-            CatalogInfo {
+    ListSchemasResponse {
+        schemas: [
+            SchemaInfo {
                 name: Some(
+                    "default",
+                ),
+                catalog_name: Some(
                     "unity",
                 ),
                 comment: Some(
-                    "Main catalog",
+                    "Default schema",
                 ),
                 properties: Some(
                     {},
+                ),
+                full_name: Some(
+                    "unity.default",
                 ),
                 created_at: Some(
                     TIMESTAMP,
                 ),
                 updated_at: None,
-                id: Some(
+                schema_id: Some(
                     "PID",
                 ),
             },
         ],
         next_page_token: None,
     },
-    CatalogInfo {
+    SchemaInfo {
         name: Some(
-            "mycatalog",
+            "myschema",
+        ),
+        catalog_name: Some(
+            "unity",
         ),
         comment: None,
         properties: None,
+        full_name: Some(
+            "unity.myschema",
+        ),
         created_at: Some(
             TIMESTAMP,
         ),
         updated_at: None,
-        id: Some(
+        schema_id: Some(
             "PID",
         ),
     },
-    ListCatalogResponse {
-        catalogs: [
-            CatalogInfo {
+    ListSchemasResponse {
+        schemas: [
+            SchemaInfo {
                 name: Some(
+                    "default",
+                ),
+                catalog_name: Some(
                     "unity",
                 ),
                 comment: Some(
-                    "Main catalog",
+                    "Default schema",
                 ),
                 properties: Some(
                     {},
+                ),
+                full_name: Some(
+                    "unity.default",
                 ),
                 created_at: Some(
                     TIMESTAMP,
                 ),
                 updated_at: None,
-                id: Some(
+                schema_id: Some(
                     "PID",
                 ),
             },
-            CatalogInfo {
+            SchemaInfo {
                 name: Some(
-                    "mycatalog",
+                    "myschema",
+                ),
+                catalog_name: Some(
+                    "unity",
                 ),
                 comment: None,
                 properties: Some(
                     {},
                 ),
+                full_name: Some(
+                    "unity.myschema",
+                ),
                 created_at: Some(
                     TIMESTAMP,
                 ),
                 updated_at: None,
-                id: Some(
+                schema_id: Some(
                     "PID",
                 ),
             },
         ],
         next_page_token: None,
     },
-    CatalogInfo {
+    SchemaInfo {
         name: Some(
-            "mycatalog",
+            "myschema",
+        ),
+        catalog_name: Some(
+            "unity",
         ),
         comment: Some(
-            "new comment",
+            "New comment",
         ),
         properties: Some(
             {},
+        ),
+        full_name: Some(
+            "unity.myschema",
         ),
         created_at: Some(
             TIMESTAMP,
@@ -95,27 +125,33 @@ expression: "(initial_list, cinfo, in_list, cinfo_patched, after_list)"
         updated_at: Some(
             TIMESTAMP,
         ),
-        id: Some(
+        schema_id: Some(
             "PID",
         ),
     },
-    ListCatalogResponse {
-        catalogs: [
-            CatalogInfo {
+    ListSchemasResponse {
+        schemas: [
+            SchemaInfo {
                 name: Some(
+                    "default",
+                ),
+                catalog_name: Some(
                     "unity",
                 ),
                 comment: Some(
-                    "Main catalog",
+                    "Default schema",
                 ),
                 properties: Some(
                     {},
+                ),
+                full_name: Some(
+                    "unity.default",
                 ),
                 created_at: Some(
                     TIMESTAMP,
                 ),
                 updated_at: None,
-                id: Some(
+                schema_id: Some(
                     "PID",
                 ),
             },

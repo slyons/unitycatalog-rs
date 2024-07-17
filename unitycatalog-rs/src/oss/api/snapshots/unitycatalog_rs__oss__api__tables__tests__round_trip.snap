@@ -1,0 +1,1671 @@
+---
+source: src/oss/api/tables.rs
+expression: "(initial_list, table_info, updated_list, final_list)"
+---
+(
+    ListTablesResponse {
+        tables: [
+            TableInfo {
+                name: Some(
+                    "marksheet",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    MANAGED,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "id",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"id\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: Some(
+                                "ID primary key",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "name",
+                            ),
+                            type_text: Some(
+                                "string",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"name\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                STRING,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                1,
+                            ),
+                            comment: Some(
+                                "Name of the entity",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "marks",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"marks\",\"type\":\"integer\",\"nullable\":true,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                2,
+                            ),
+                            comment: Some(
+                                "Marks of the entity",
+                            ),
+                            nullable: Some(
+                                true,
+                            ),
+                            partition_index: None,
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///src/etc/data/managed/unity/default/tables/marksheet/",
+                ),
+                comment: Some(
+                    "Managed table",
+                ),
+                properties: Some(
+                    {
+                        "key2": "value2",
+                        "key1": "value1",
+                    },
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: Some(
+                    TIMESTAMP,
+                ),
+                table_id: Some(
+                    "PID",
+                ),
+            },
+            TableInfo {
+                name: Some(
+                    "marksheet_uniform",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    EXTERNAL,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "id",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"id\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: Some(
+                                "ID primary key",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "name",
+                            ),
+                            type_text: Some(
+                                "string",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"name\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                STRING,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                1,
+                            ),
+                            comment: Some(
+                                "Name of the entity",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "marks",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"marks\",\"type\":\"integer\",\"nullable\":true,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                2,
+                            ),
+                            comment: Some(
+                                "Marks of the entity",
+                            ),
+                            nullable: Some(
+                                true,
+                            ),
+                            partition_index: None,
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///tmp/marksheet_uniform",
+                ),
+                comment: Some(
+                    "Uniform table",
+                ),
+                properties: Some(
+                    {
+                        "key1": "value1",
+                        "key2": "value2",
+                    },
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: Some(
+                    TIMESTAMP,
+                ),
+                table_id: Some(
+                    "PID",
+                ),
+            },
+            TableInfo {
+                name: Some(
+                    "numbers",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    EXTERNAL,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "as_int",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"as_int\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: Some(
+                                "Int column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "as_double",
+                            ),
+                            type_text: Some(
+                                "double",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"as_double\",\"type\":\"double\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                DOUBLE,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                1,
+                            ),
+                            comment: Some(
+                                "Double column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///src/etc/data/external/unity/default/tables/numbers/",
+                ),
+                comment: Some(
+                    "External table",
+                ),
+                properties: Some(
+                    {
+                        "key1": "value1",
+                        "key2": "value2",
+                    },
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: Some(
+                    TIMESTAMP,
+                ),
+                table_id: Some(
+                    "PID",
+                ),
+            },
+            TableInfo {
+                name: Some(
+                    "user_countries",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    EXTERNAL,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "first_name",
+                            ),
+                            type_text: Some(
+                                "struct",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"first_name\",\"type\":\"struct\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                STRUCT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: Some(
+                                "string column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "age",
+                            ),
+                            type_text: Some(
+                                "bigint",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"age\",\"type\":\"long\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                LONG,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                1,
+                            ),
+                            comment: Some(
+                                "long column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "country",
+                            ),
+                            type_text: Some(
+                                "string",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"country\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                STRING,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                2,
+                            ),
+                            comment: Some(
+                                "partition column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: Some(
+                                0,
+                            ),
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///src/etc/data/external/unity/default/tables/user_countries/",
+                ),
+                comment: Some(
+                    "Partitioned table",
+                ),
+                properties: Some(
+                    {},
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: Some(
+                    TIMESTAMP,
+                ),
+                table_id: Some(
+                    "PID",
+                ),
+            },
+        ],
+        next_page_token: None,
+    },
+    TableInfo {
+        name: Some(
+            "mytable",
+        ),
+        catalog_name: Some(
+            "unity",
+        ),
+        schema_name: Some(
+            "default",
+        ),
+        table_type: Some(
+            EXTERNAL,
+        ),
+        data_source_format: Some(
+            DELTA,
+        ),
+        columns: Some(
+            [
+                ColumnInfo {
+                    name: Some(
+                        "my_column",
+                    ),
+                    type_text: Some(
+                        "int",
+                    ),
+                    type_json: Some(
+                        "{\"name\":\"my_column\",\"type\":\"int\",\"nullable\":true,\"metadata\":{}}",
+                    ),
+                    type_name: Some(
+                        INT,
+                    ),
+                    type_precision: Some(
+                        0,
+                    ),
+                    type_scale: Some(
+                        0,
+                    ),
+                    type_interval_type: None,
+                    position: Some(
+                        0,
+                    ),
+                    comment: None,
+                    nullable: Some(
+                        true,
+                    ),
+                    partition_index: None,
+                },
+            ],
+        ),
+        storage_location: Some(
+            "file:///tmp/marksheet_uniform2",
+        ),
+        comment: None,
+        properties: None,
+        created_at: Some(
+            TIMESTAMP,
+        ),
+        updated_at: None,
+        table_id: Some(
+            "PID",
+        ),
+    },
+    ListTablesResponse {
+        tables: [
+            TableInfo {
+                name: Some(
+                    "marksheet",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    MANAGED,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "id",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"id\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: Some(
+                                "ID primary key",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "name",
+                            ),
+                            type_text: Some(
+                                "string",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"name\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                STRING,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                1,
+                            ),
+                            comment: Some(
+                                "Name of the entity",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "marks",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"marks\",\"type\":\"integer\",\"nullable\":true,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                2,
+                            ),
+                            comment: Some(
+                                "Marks of the entity",
+                            ),
+                            nullable: Some(
+                                true,
+                            ),
+                            partition_index: None,
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///src/etc/data/managed/unity/default/tables/marksheet/",
+                ),
+                comment: Some(
+                    "Managed table",
+                ),
+                properties: Some(
+                    {
+                        "key1": "value1",
+                        "key2": "value2",
+                    },
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: Some(
+                    TIMESTAMP,
+                ),
+                table_id: Some(
+                    "PID",
+                ),
+            },
+            TableInfo {
+                name: Some(
+                    "marksheet_uniform",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    EXTERNAL,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "id",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"id\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: Some(
+                                "ID primary key",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "name",
+                            ),
+                            type_text: Some(
+                                "string",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"name\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                STRING,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                1,
+                            ),
+                            comment: Some(
+                                "Name of the entity",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "marks",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"marks\",\"type\":\"integer\",\"nullable\":true,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                2,
+                            ),
+                            comment: Some(
+                                "Marks of the entity",
+                            ),
+                            nullable: Some(
+                                true,
+                            ),
+                            partition_index: None,
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///tmp/marksheet_uniform",
+                ),
+                comment: Some(
+                    "Uniform table",
+                ),
+                properties: Some(
+                    {
+                        "key1": "value1",
+                        "key2": "value2",
+                    },
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: Some(
+                    TIMESTAMP,
+                ),
+                table_id: Some(
+                    "PID",
+                ),
+            },
+            TableInfo {
+                name: Some(
+                    "mytable",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    EXTERNAL,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "my_column",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"my_column\",\"type\":\"int\",\"nullable\":true,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: None,
+                            nullable: Some(
+                                true,
+                            ),
+                            partition_index: None,
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///tmp/marksheet_uniform2",
+                ),
+                comment: None,
+                properties: Some(
+                    {},
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: None,
+                table_id: Some(
+                    "PID",
+                ),
+            },
+            TableInfo {
+                name: Some(
+                    "numbers",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    EXTERNAL,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "as_int",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"as_int\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: Some(
+                                "Int column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "as_double",
+                            ),
+                            type_text: Some(
+                                "double",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"as_double\",\"type\":\"double\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                DOUBLE,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                1,
+                            ),
+                            comment: Some(
+                                "Double column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///src/etc/data/external/unity/default/tables/numbers/",
+                ),
+                comment: Some(
+                    "External table",
+                ),
+                properties: Some(
+                    {
+                        "key2": "value2",
+                        "key1": "value1",
+                    },
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: Some(
+                    TIMESTAMP,
+                ),
+                table_id: Some(
+                    "PID",
+                ),
+            },
+            TableInfo {
+                name: Some(
+                    "user_countries",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    EXTERNAL,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "first_name",
+                            ),
+                            type_text: Some(
+                                "struct",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"first_name\",\"type\":\"struct\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                STRUCT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: Some(
+                                "string column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "age",
+                            ),
+                            type_text: Some(
+                                "bigint",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"age\",\"type\":\"long\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                LONG,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                1,
+                            ),
+                            comment: Some(
+                                "long column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "country",
+                            ),
+                            type_text: Some(
+                                "string",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"country\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                STRING,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                2,
+                            ),
+                            comment: Some(
+                                "partition column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: Some(
+                                0,
+                            ),
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///src/etc/data/external/unity/default/tables/user_countries/",
+                ),
+                comment: Some(
+                    "Partitioned table",
+                ),
+                properties: Some(
+                    {},
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: Some(
+                    TIMESTAMP,
+                ),
+                table_id: Some(
+                    "PID",
+                ),
+            },
+        ],
+        next_page_token: None,
+    },
+    ListTablesResponse {
+        tables: [
+            TableInfo {
+                name: Some(
+                    "marksheet",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    MANAGED,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "id",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"id\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: Some(
+                                "ID primary key",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "name",
+                            ),
+                            type_text: Some(
+                                "string",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"name\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                STRING,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                1,
+                            ),
+                            comment: Some(
+                                "Name of the entity",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "marks",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"marks\",\"type\":\"integer\",\"nullable\":true,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                2,
+                            ),
+                            comment: Some(
+                                "Marks of the entity",
+                            ),
+                            nullable: Some(
+                                true,
+                            ),
+                            partition_index: None,
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///src/etc/data/managed/unity/default/tables/marksheet/",
+                ),
+                comment: Some(
+                    "Managed table",
+                ),
+                properties: Some(
+                    {
+                        "key1": "value1",
+                        "key2": "value2",
+                    },
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: Some(
+                    TIMESTAMP,
+                ),
+                table_id: Some(
+                    "PID",
+                ),
+            },
+            TableInfo {
+                name: Some(
+                    "marksheet_uniform",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    EXTERNAL,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "id",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"id\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: Some(
+                                "ID primary key",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "name",
+                            ),
+                            type_text: Some(
+                                "string",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"name\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                STRING,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                1,
+                            ),
+                            comment: Some(
+                                "Name of the entity",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "marks",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"marks\",\"type\":\"integer\",\"nullable\":true,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                2,
+                            ),
+                            comment: Some(
+                                "Marks of the entity",
+                            ),
+                            nullable: Some(
+                                true,
+                            ),
+                            partition_index: None,
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///tmp/marksheet_uniform",
+                ),
+                comment: Some(
+                    "Uniform table",
+                ),
+                properties: Some(
+                    {
+                        "key1": "value1",
+                        "key2": "value2",
+                    },
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: Some(
+                    TIMESTAMP,
+                ),
+                table_id: Some(
+                    "PID",
+                ),
+            },
+            TableInfo {
+                name: Some(
+                    "numbers",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    EXTERNAL,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "as_int",
+                            ),
+                            type_text: Some(
+                                "int",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"as_int\",\"type\":\"integer\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                INT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: Some(
+                                "Int column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "as_double",
+                            ),
+                            type_text: Some(
+                                "double",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"as_double\",\"type\":\"double\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                DOUBLE,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                1,
+                            ),
+                            comment: Some(
+                                "Double column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///src/etc/data/external/unity/default/tables/numbers/",
+                ),
+                comment: Some(
+                    "External table",
+                ),
+                properties: Some(
+                    {
+                        "key1": "value1",
+                        "key2": "value2",
+                    },
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: Some(
+                    TIMESTAMP,
+                ),
+                table_id: Some(
+                    "PID",
+                ),
+            },
+            TableInfo {
+                name: Some(
+                    "user_countries",
+                ),
+                catalog_name: Some(
+                    "unity",
+                ),
+                schema_name: Some(
+                    "default",
+                ),
+                table_type: Some(
+                    EXTERNAL,
+                ),
+                data_source_format: Some(
+                    DELTA,
+                ),
+                columns: Some(
+                    [
+                        ColumnInfo {
+                            name: Some(
+                                "first_name",
+                            ),
+                            type_text: Some(
+                                "struct",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"first_name\",\"type\":\"struct\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                STRUCT,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                0,
+                            ),
+                            comment: Some(
+                                "string column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "age",
+                            ),
+                            type_text: Some(
+                                "bigint",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"age\",\"type\":\"long\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                LONG,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                1,
+                            ),
+                            comment: Some(
+                                "long column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: None,
+                        },
+                        ColumnInfo {
+                            name: Some(
+                                "country",
+                            ),
+                            type_text: Some(
+                                "string",
+                            ),
+                            type_json: Some(
+                                "{\"name\":\"country\",\"type\":\"string\",\"nullable\":false,\"metadata\":{}}",
+                            ),
+                            type_name: Some(
+                                STRING,
+                            ),
+                            type_precision: Some(
+                                0,
+                            ),
+                            type_scale: Some(
+                                0,
+                            ),
+                            type_interval_type: None,
+                            position: Some(
+                                2,
+                            ),
+                            comment: Some(
+                                "partition column",
+                            ),
+                            nullable: Some(
+                                false,
+                            ),
+                            partition_index: Some(
+                                0,
+                            ),
+                        },
+                    ],
+                ),
+                storage_location: Some(
+                    "file:///src/etc/data/external/unity/default/tables/user_countries/",
+                ),
+                comment: Some(
+                    "Partitioned table",
+                ),
+                properties: Some(
+                    {},
+                ),
+                created_at: Some(
+                    TIMESTAMP,
+                ),
+                updated_at: Some(
+                    TIMESTAMP,
+                ),
+                table_id: Some(
+                    "PID",
+                ),
+            },
+        ],
+        next_page_token: None,
+    },
+)

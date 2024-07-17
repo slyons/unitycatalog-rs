@@ -3,6 +3,7 @@ use reqwest::StatusCode;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use crate::errors::UCRSResult;
+use derive_builder::Builder;
 
 pub struct CatalogsClient<'a> {
     client: &'a RequestClient
@@ -93,7 +94,7 @@ impl<'a> CatalogsClient<'a> {
     }
 }
 
-#[derive(Serialize, Deserialize, Debug, Default)]
+#[derive(Serialize, Deserialize, Debug, Default, Builder)]
 pub struct CreateCatalog {
     name: String,
     comment: Option<String>,
@@ -116,7 +117,7 @@ pub struct CatalogInfo {
     id: Option<String>
 }
 
-#[derive(Serialize, Deserialize, Debug, Default)]
+#[derive(Serialize, Deserialize, Debug, Default, Builder)]
 pub struct UpdateCatalog {
     new_name: Option<String>,
     properties: Option<HashMap<String, String>>,
@@ -157,11 +158,10 @@ mod tests {
             let catalog_client = CatalogsClient::new(&rc);
 
             let initial_list = catalog_client.list(None, None).await?;
-            let create_props = CreateCatalog {
-                name: "mycatalog".to_string(),
-                comment: None,
-                properties: None
-            };
+            let create_props = CreateCatalogBuilder::default()
+                .name("mycatalog".to_string())
+                .build()
+                .unwrap();
             let cinfo = catalog_client.create(create_props).await?;
             let in_list = catalog_client.list(None, None).await?;
             let update_props = UpdateCatalog {

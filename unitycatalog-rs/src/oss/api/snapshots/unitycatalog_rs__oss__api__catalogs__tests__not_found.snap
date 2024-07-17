@@ -1,5 +1,5 @@
 ---
-source: src/clients/catalogs.rs
+source: src/oss/api/catalogs.rs
 expression: res
 ---
 Err(

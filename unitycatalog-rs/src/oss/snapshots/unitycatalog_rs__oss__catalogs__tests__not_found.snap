@@ -1,9 +1,0 @@
----
-source: src/oss/catalogs.rs
-expression: res
----
-Err(
-    CatalogNotFound(
-        "mycatalog",
-    ),
-)

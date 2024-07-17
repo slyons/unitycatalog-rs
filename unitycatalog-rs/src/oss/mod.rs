@@ -1,3 +1,1 @@
-mod catalogs;
-mod schemas;
-mod tables;
+mod api;

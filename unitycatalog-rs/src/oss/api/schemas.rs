@@ -3,6 +3,7 @@ use reqwest::StatusCode;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 use crate::errors::UCRSResult;
+use derive_builder::Builder;
 
 pub struct SchemasClient<'a> {
     client: &'a RequestClient
@@ -104,7 +105,7 @@ pub struct ListSchemasResponse {
     next_page_token: Option<String>
 }
 
-#[derive(Serialize, Deserialize, Debug, Eq, PartialEq, Default)]
+#[derive(Serialize, Deserialize, Debug, Eq, PartialEq, Default, Builder)]
 pub struct SchemaInfo {
     name: Option<String>,
     catalog_name: Option<String>,
@@ -116,7 +117,7 @@ pub struct SchemaInfo {
     schema_id: Option<String>
 }
 
-#[derive(Serialize, Deserialize, Debug, Default)]
+#[derive(Serialize, Deserialize, Debug, Default, Builder)]
 pub struct CreateSchema {
     name: String,
     catalog_name: String,
@@ -124,7 +125,7 @@ pub struct CreateSchema {
     properties: Option<HashMap<String, String>>
 }
 
-#[derive(Serialize, Deserialize, Debug, Default)]
+#[derive(Serialize, Deserialize, Debug, Default, Builder)]
 pub struct UpdateSchema {
     name: String,
     new_name: Option<String>,

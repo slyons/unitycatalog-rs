@@ -1,5 +1,5 @@
 ---
-source: src/oss/catalogs.rs
+source: src/oss/api/catalogs.rs
 expression: list
 ---
 Ok(

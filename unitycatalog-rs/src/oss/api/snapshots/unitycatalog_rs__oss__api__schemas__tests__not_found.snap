@@ -1,5 +1,5 @@
 ---
-source: src/oss/schemas.rs
+source: src/oss/api/schemas.rs
 expression: (fetch)
 ---
 Err(

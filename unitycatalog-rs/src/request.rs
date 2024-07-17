@@ -98,8 +98,10 @@ impl RequestClient {
 
         let request = match body {
             Some(b) => {
+                let b = b?;
+                eprintln!("Body is {}", b);
                 request
-                    .body(b?)
+                    .body(b)
                     .header("Content-Type", "application/json")
                     .header("Accept", "application/json")
             },
@@ -107,12 +109,16 @@ impl RequestClient {
         };
         
         let response = request.send().await
-            .map_err(|e| UCRSError::RequestError(e))?
-            .error_for_status()
             .map_err(|e| UCRSError::RequestError(e))?;
 
-        let response_body = response.json::<R>().await
-            .map_err(|e| UCRSError::JSONParsingError(e))?;
-        Ok(response_body)
+        if let Err(e) = response.error_for_status_ref() {
+            let response_body = response.text().await
+                .map_err(|e| UCRSError::RequestError(e))?;
+            Err(UCRSError::RequestErrorWithResponse(e, response_body))
+        } else {
+            let response_body = response.json::<R>().await
+                .map_err(|e| UCRSError::JSONParsingError(e))?;
+            Ok(response_body)
+        }
     }
 }
