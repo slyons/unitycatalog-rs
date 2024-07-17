@@ -126,7 +126,94 @@ pub struct CreateSchema {
 
 #[derive(Serialize, Deserialize, Debug, Default)]
 pub struct UpdateSchema {
+    name: String,
     new_name: Option<String>,
     properties: Option<HashMap<String, String>>,
     comment: Option<String>
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use insta::with_settings;
+    use crate::testing::test_utils::{cleanup_user_model, test_with_uc};
+
+    #[tokio::test]
+    async fn test_round_trip() -> UCRSResult<()> {
+        test_with_uc(|port| async move {
+            let rc = RequestClient::new(&format!("http://localhost:{}", port), true)?;
+            let schema_client = SchemasClient::new(&rc);
+
+            let catalog_name = "unity";
+            let name = "myschema";
+            let full_name = SchemasClient::full_name(catalog_name, name);
+            let initial_schema_list = schema_client.list(catalog_name, None, None).await?;
+            let create_props = CreateSchema {
+                name: name.to_owned(),
+                catalog_name: catalog_name.to_owned(),
+                ..Default::default()
+            };
+            let schema = schema_client.create(create_props).await?;
+            let second_list = schema_client.list(catalog_name, None, None).await?;
+            assert_ne!(initial_schema_list, second_list);
+
+            let update_props = UpdateSchema {
+                name: name.to_owned(),
+                comment: Some("New comment".to_owned()),
+                ..Default::default()
+            };
+            let updated = schema_client.update(
+                &full_name,
+                update_props
+            ).await?;
+            
+
+            let fetch = schema_client.get(&full_name).await?;
+            assert_eq!(updated, fetch);
+            schema_client.delete(&full_name, false).await?;
+
+            let after_delete = schema_client.list(catalog_name, None, None).await?;
+            assert_eq!(initial_schema_list, after_delete);
+
+            with_settings!({
+                filters => cleanup_user_model()
+            }, {
+                insta::assert_debug_snapshot!((
+                    initial_schema_list,
+                    schema, 
+                    second_list,
+                    updated,
+                    after_delete
+                ));
+
+            });
+
+            Ok(())
+        })
+        .await
+    }
+
+    #[tokio::test]
+    async fn test_not_found() -> UCRSResult<()> {
+        test_with_uc(|port| async move {
+            let rc = RequestClient::new(&format!("http://localhost:{}", port), true)?;
+            let schema_client = SchemasClient::new(&rc);
+
+            let catalog_name = "unity";
+            let name = "myschema2";
+            let full_name = SchemasClient::full_name(catalog_name, name);
+            let fetch = schema_client.get(&full_name).await;
+
+            with_settings!({
+                filters => cleanup_user_model()
+            }, {
+                insta::assert_debug_snapshot!((
+                    fetch
+                ));
+            });
+
+            Ok(())
+        })
+        .await
+    }
 }

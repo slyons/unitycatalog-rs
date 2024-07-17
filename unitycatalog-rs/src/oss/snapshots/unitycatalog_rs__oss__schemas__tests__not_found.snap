@@ -1,0 +1,9 @@
+---
+source: src/oss/schemas.rs
+expression: (fetch)
+---
+Err(
+    SchemaNotFound(
+        "unity.myschema2",
+    ),
+)

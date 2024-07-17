@@ -98,8 +98,10 @@ impl RequestClient {
 
         let request = match body {
             Some(b) => {
-
-                request.body(b?).header("Content-Type", "application/json")
+                request
+                    .body(b?)
+                    .header("Content-Type", "application/json")
+                    .header("Accept", "application/json")
             },
             None => request
         };
