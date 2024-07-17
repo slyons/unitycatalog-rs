@@ -1,7 +1,10 @@
 [package]
 name = "unitycatalog-rs"
+description = "Rust-based clients for interacting with Unity Catalog"
 version = "0.0.1"
 edition = "2021"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/slyons/unitycatalog-rs"
 
 [dependencies]
 derive_builder = "0.20.0"
