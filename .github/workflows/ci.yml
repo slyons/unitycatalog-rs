@@ -28,11 +28,11 @@ jobs:
           profile: minimal
           override: true
       - name: List all
-        run: ls -lah .
+        run: ls -lah unitycatalog-rs
       - name: Build
-        run: cargo build --all-targets
+        run: cd unitycatalog-rs && cargo build --all-targets
       - name: Test
-        run: cargo test
+        run: cd unitycatalog-rs && cargo test
 
   check-coverage:
     runs-on: ubuntu-latest
