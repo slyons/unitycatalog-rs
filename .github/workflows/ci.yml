@@ -12,7 +12,7 @@ env:
   CARGO_TERM_COLOR: always
   RUST_VERSION_STABLE: stable
   COV_THRESHOLD: 100.0
-  CRATE_PATHS: .
+  CRATE_PATHS: unitycatalog-rs
 
 jobs:
 
@@ -27,6 +27,8 @@ jobs:
           toolchain: ${{ env.RUST_VERSION_STABLE }}
           profile: minimal
           override: true
+      - name: List all
+        run: ls -lah .
       - name: Build
         run: cargo build --all-targets
       - name: Test
