@@ -1,12 +1,12 @@
+use crate::errors::UCRSResult;
 use crate::{errors::UCRSError, request::RequestClient};
+use derive_builder::Builder;
 use reqwest::StatusCode;
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
-use crate::errors::UCRSResult;
-use derive_builder::Builder;
 
 pub struct SchemasClient<'a> {
-    client: &'a RequestClient
+    client: &'a RequestClient,
 }
 
 impl<'a> SchemasClient<'a> {
@@ -18,28 +18,44 @@ impl<'a> SchemasClient<'a> {
         format!("{}.{}", catalog_name, name)
     }
 
-    pub async fn list(&self, catalog_name: &str, page_token: Option<String>, max_results: Option<i32>) -> UCRSResult<ListSchemasResponse> {
-        let mut url = self.client.base_url.clone().join("/api/2.1/unity-catalog/schemas")
+    pub async fn list(
+        &self,
+        catalog_name: &str,
+        page_token: Option<String>,
+        max_results: Option<i32>,
+    ) -> UCRSResult<ListSchemasResponse> {
+        let mut url = self
+            .client
+            .base_url
+            .clone()
+            .join("/api/2.1/unity-catalog/schemas")
             .map_err(UCRSError::MalformedURL)?;
-        url.query_pairs_mut().append_pair("catalog_name", catalog_name);
+        url.query_pairs_mut()
+            .append_pair("catalog_name", catalog_name);
         if let Some(token) = page_token {
             url.query_pairs_mut().append_pair("page_token", &token);
         }
         if let Some(max_results) = max_results {
-            url.query_pairs_mut().append_pair("max_results", &max_results.to_string());
+            url.query_pairs_mut()
+                .append_pair("max_results", &max_results.to_string());
         }
         self.client.get(url, None::<String>).await
     }
 
     pub async fn create(&self, props: CreateSchema) -> UCRSResult<SchemaInfo> {
-        let route = self.client.base_url.join("/api/2.1/unity-catalog/schemas")
+        let route = self
+            .client
+            .base_url
+            .join("/api/2.1/unity-catalog/schemas")
             .map_err(UCRSError::MalformedURL)?;
 
         let res = self.client.post(route, Some(&props)).await;
         if let Err(UCRSError::RequestError(ref res_inner)) = res {
             match res_inner.status() {
-                Some(StatusCode::CONFLICT) => Err(UCRSError::DuplicateSchemaName(SchemasClient::full_name(&props.catalog_name, &props.name))),
-                _ => res
+                Some(StatusCode::CONFLICT) => Err(UCRSError::DuplicateSchemaName(
+                    SchemasClient::full_name(&props.catalog_name, &props.name),
+                )),
+                _ => res,
             }
         } else {
             res
@@ -47,14 +63,16 @@ impl<'a> SchemasClient<'a> {
     }
 
     pub async fn get(&self, full_name: &str) -> UCRSResult<SchemaInfo> {
-        let path = self.client.base_url.join(&format!("/api/2.1/unity-catalog/schemas/{}", full_name))
+        let path = self
+            .client
+            .base_url
+            .join(&format!("/api/2.1/unity-catalog/schemas/{}", full_name))
             .map_err(UCRSError::MalformedURL)?;
         let res = self.client.get(path, None::<String>).await;
         if let Err(UCRSError::RequestError(ref res_inner)) = res {
             match res_inner.status() {
-                Some(StatusCode::NOT_FOUND) => 
-                    Err(UCRSError::SchemaNotFound(full_name.to_owned())),
-                _ => res
+                Some(StatusCode::NOT_FOUND) => Err(UCRSError::SchemaNotFound(full_name.to_owned())),
+                _ => res,
             }
         } else {
             res
@@ -62,36 +80,43 @@ impl<'a> SchemasClient<'a> {
     }
 
     pub async fn delete(&self, full_name: &str, force: bool) -> UCRSResult<()> {
-        let mut path = self.client.base_url.join(&format!("/api/2.1/unity-catalog/schemas/{}", full_name))
+        let mut path = self
+            .client
+            .base_url
+            .join(&format!("/api/2.1/unity-catalog/schemas/{}", full_name))
             .map_err(UCRSError::MalformedURL)?;
-        path.query_pairs_mut().append_pair("force", &force.to_string());
+        path.query_pairs_mut()
+            .append_pair("force", &force.to_string());
         let res = self.client.delete(path, None::<String>).await;
         if let Err(UCRSError::RequestError(ref res_inner)) = res {
             match res_inner.status() {
-                Some(StatusCode::NOT_FOUND) => 
-                    Err(UCRSError::SchemaNotFound(full_name.to_owned())),
-                _ => res
+                Some(StatusCode::NOT_FOUND) => Err(UCRSError::SchemaNotFound(full_name.to_owned())),
+                _ => res,
             }
         } else if let Err(UCRSError::JSONParsingError(_)) = res {
             // This is because DELETE returns "200 OK" as a response body :/
             Ok(())
-        } 
-        else {
+        } else {
             res
         }
     }
 
-    pub async fn update(&self, full_name: &str, update_props: UpdateSchema)
-        -> UCRSResult<SchemaInfo> {
-        let path = self.client.base_url.join(&format!("/api/2.1/unity-catalog/schemas/{}", full_name))
+    pub async fn update(
+        &self,
+        full_name: &str,
+        update_props: UpdateSchema,
+    ) -> UCRSResult<SchemaInfo> {
+        let path = self
+            .client
+            .base_url
+            .join(&format!("/api/2.1/unity-catalog/schemas/{}", full_name))
             .map_err(UCRSError::MalformedURL)?;
-        
+
         let res = self.client.patch(path, Some(&update_props)).await;
         if let Err(UCRSError::RequestError(ref res_inner)) = res {
             match res_inner.status() {
-                Some(StatusCode::NOT_FOUND) => 
-                    Err(UCRSError::SchemaNotFound(full_name.to_owned())),
-                _ => res
+                Some(StatusCode::NOT_FOUND) => Err(UCRSError::SchemaNotFound(full_name.to_owned())),
+                _ => res,
             }
         } else {
             res
@@ -102,7 +127,7 @@ impl<'a> SchemasClient<'a> {
 #[derive(Serialize, Deserialize, Debug, Eq, PartialEq, Default)]
 pub struct ListSchemasResponse {
     schemas: Vec<SchemaInfo>,
-    next_page_token: Option<String>
+    next_page_token: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Eq, PartialEq, Default, Builder)]
@@ -114,7 +139,7 @@ pub struct SchemaInfo {
     full_name: Option<String>,
     created_at: Option<i64>,
     updated_at: Option<i64>,
-    schema_id: Option<String>
+    schema_id: Option<String>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Default, Builder)]
@@ -122,7 +147,7 @@ pub struct CreateSchema {
     name: String,
     catalog_name: String,
     comment: Option<String>,
-    properties: Option<HashMap<String, String>>
+    properties: Option<HashMap<String, String>>,
 }
 
 #[derive(Serialize, Deserialize, Debug, Default, Builder)]
@@ -130,14 +155,14 @@ pub struct UpdateSchema {
     name: String,
     new_name: Option<String>,
     properties: Option<HashMap<String, String>>,
-    comment: Option<String>
+    comment: Option<String>,
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use insta::with_settings;
     use crate::testing::test_utils::{cleanup_user_model, test_with_uc};
+    use insta::with_settings;
 
     #[tokio::test]
     async fn test_round_trip() -> UCRSResult<()> {
@@ -163,11 +188,7 @@ mod tests {
                 comment: Some("New comment".to_owned()),
                 ..Default::default()
             };
-            let updated = schema_client.update(
-                &full_name,
-                update_props
-            ).await?;
-            
+            let updated = schema_client.update(&full_name, update_props).await?;
 
             let fetch = schema_client.get(&full_name).await?;
             assert_eq!(updated, fetch);
@@ -181,7 +202,7 @@ mod tests {
             }, {
                 insta::assert_debug_snapshot!((
                     initial_schema_list,
-                    schema, 
+                    schema,
                     second_list,
                     updated,
                     after_delete

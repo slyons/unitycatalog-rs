@@ -25,7 +25,7 @@ pub enum UCRSError {
     #[error("Schema not found")]
     SchemaNotFound(String),
     #[error("Table not found")]
-    TableNotFound(String)
+    TableNotFound(String),
 }
 
 pub type UCRSResult<T> = Result<T, UCRSError>;
